@@ -1,10 +1,12 @@
 import { Play } from 'lucide-react';
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router';
+import { Link, useParams } from 'react-router';
 
 const MoviePage = () => {
     const {id}= useParams();
-    const[movie, setMovie]= useState(null)
+    const[movie, setMovie]= useState(null);
+    const [recommendations, setRecommendations] = useState([]);
+    const [trailerKey, setTrailerKey] = useState(null);
 
     const options = {
       method: "GET",
@@ -29,6 +31,39 @@ const MoviePage = () => {
             }
         }
         movies();
+
+        const recommendations = async () => {
+          try {
+            const res = await fetch(
+              `https://api.themoviedb.org/3/movie/${id}/recommendations?language=en-US&page=1`,
+              options
+            );
+            const data = await res.json();
+            setRecommendations(data.results || []);
+          } catch (error) {
+            console.log(error);
+          }
+        };
+        recommendations();
+    // Trailer Key
+        const trailerKey = async () => {
+          try {
+            const res = await fetch(
+              `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`,
+              options
+            );
+            const data = await res.json();
+              const trailer = data.results?.find(
+                (vid) => vid.site === "YouTube" && vid.type === "Trailer"
+              );
+              setTrailerKey(trailer?.key || null);
+            
+            setTrailerKey(trailer?.key || null);
+          } catch (error) {
+            console.log(error);
+          }
+        };
+        trailerKey();
     }, [id])
     if(!movie) {
         return <div className='flex items-center justify-center h-screen'><span className='text-xl text-red-500'>Loading...</span></div>
@@ -64,10 +99,16 @@ const MoviePage = () => {
                 </span>
               ))}
             </div>
+
             <p className="max-w-2xl text-gray-200">{movie.overview}</p>
-            <button className="flex justify-center items-center bg-[#e50914]  text-white py-3 px-4 rounded-full cursor-pointer text-sm md:text-base mt-2 md:mt-4">
-              <Play className="mr-2 w-4 h-5 md:w-5 md:h-5" /> Watch Now
-            </button>
+            <Link
+              to={`https://www.youtube.com/watch?v=${trailerKey}`}
+              target="_blank"
+            >
+              <button className="flex justify-center items-center bg-[#e50914]  text-white py-3 px-4 rounded-full cursor-pointer text-sm md:text-base mt-2 md:mt-4">
+                <Play className="mr-2 w-4 h-5 md:w-5 md:h-5" /> Watch Now
+              </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -156,6 +197,36 @@ const MoviePage = () => {
           </div>
         </div>
       </div>
+
+      {recommendations.length > 0 && (
+        <div className="p-8">
+          <h2 className="text-2xl font-semibold mb-4">
+            You might also like...
+          </h2>
+
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+            {recommendations.slice(0, 10).map((rec) => (
+              <div
+                key={rec.id}
+                className="bg-[#232323] rounded-lg overflow-hidden hover:scale-105 transition"
+              >
+                <Link to={`/movie/${rec.id}`}>
+                  <img
+                    src={`https://image.tmdb.org/t/p/w300${rec.poster_path}`}
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="p-2">
+                    <h3 className="text-sm font-semibold">{rec.title}</h3>
+                    <span className="text-xs text-gray-400">
+                      {rec.release_date?.slice(0, 4)}
+                    </span>
+                  </div>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

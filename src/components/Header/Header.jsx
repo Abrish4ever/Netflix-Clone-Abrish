@@ -1,6 +1,6 @@
 import "./Header.css";
 import Logo from "../../assets/images/netflix-logo.png"
-import { Menu, Search, Bell } from "lucide-react";
+import { Menu, Search, Bell, User, ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 
@@ -36,7 +36,7 @@ const Header = () => {
         }`}
       >
         <div className="flex item-center ">
-          <Link to= {"/"}>
+          <Link to={"/"}>
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg"
               alt="Netflix Logo"
@@ -64,7 +64,18 @@ const Header = () => {
             />
             <Search className="absolute top-2 right-4 w-5 h-5" />
           </div>
-          <button>Sign In</button>
+          <ul className="flex gap-4 text-white">
+            <li>
+              <Bell className="w-6 h-6" />
+            </li>
+            <li>
+              <User className="w-6 h-6" />
+            </li>
+            <li>
+              <ChevronDown className="w-6 h-6" />
+            </li>
+          </ul>
+          {/* <button>Sign In</button> */}
         </div>
       </nav>
     </>
