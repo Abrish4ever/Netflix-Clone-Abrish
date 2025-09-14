@@ -3,26 +3,26 @@
 Netflix-Clone-Abrish is a Netflix-inspired web application built as part of the Evangadi Bootcamp project.
 It provides a modern and interactive UI where users can browse movies, search for specific titles, and enjoy a responsive design across devices.
 
-🚀 Features
+# 🚀 Features
 
-🎬 Movie Browsing – Browse trending, popular, and top-rated movies.
+* 🎬 Movie Browsing – Browse trending, popular, and top-rated movies.
 
-🔍 Search Functionality – Find movies easily by title.
+* 🔍 Search Functionality – Find movies easily by title.
 
-📱 Responsive Design – Optimized for desktop, tablet, and mobile.
+* 📱 Responsive Design – Optimized for desktop, tablet, and mobile.
 
-⚡ Fast & Modern UI – Built with React and Vite for performance.
+* ⚡ Fast & Modern UI – Built with React and Vite for performance.
 
-🎨 Tailwind CSS Styling – Sleek, modern, and responsive styling.
+* 🎨 Tailwind CSS Styling – Sleek, modern, and responsive styling.
 
-🎥 TMDB API Integration – Real-time data for movies and posters.
+* 🎥 TMDB API Integration – Real-time data for movies and posters.
 
-🛠️ Tech Stack
+# 🛠️ Tech Stack
 
-React – Frontend framework
+* React – Frontend framework
 
-Vite – Fast build tool
+* Vite – Fast build tool
 
-Tailwind CSS – Styling and responsiveness
+* Tailwind CSS – Styling and responsiveness
 
-TMDB API – Fetching movie data
+* TMDB API – Fetching movie data
