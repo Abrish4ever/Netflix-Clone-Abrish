@@ -4,5 +4,7 @@ import react from '@vitejs/plugin-react-swc'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "/Netflix-Clone-Abrish/", // 👈 use your repo name here
+  build: {
+    outDir: "build",
+  },
 });
