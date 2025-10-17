@@ -12,8 +12,7 @@ const MoviePage = () => {
       method: "GET",
       headers: {
         accept: "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYmQxNThiNzA3MGJlMTdhNTBiY2FhYjgwNWY4NGFjMSIsIm5iZiI6MTc1NzE2MzcxOC43MzksInN1YiI6IjY4YmMzMGM2MjM4MmEwMzMwYjliZmU3YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.N20diGC0g7bz9tLoNKSi3rtMWObSjKyajksqbevZ0LI",
+        Authorization: `Bearer ${import.meta.env.VITE_TMDB_TOKEN}`,
       },
     };
 
