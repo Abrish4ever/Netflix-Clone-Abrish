@@ -13,7 +13,9 @@ const MoviePage = () => {
     useEffect(() => {
       // First, get token from backend
       const fetchToken = async () => {
-        const res = await fetch("http://localhost:5000/api/token");
+        const res = await fetch(
+          "https://netflix-backend-deploy.onrender.com/api/token"
+        );
         const data = await res.json();
         setToken(data.token);
       };
