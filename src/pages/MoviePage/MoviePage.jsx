@@ -1,5 +1,5 @@
 import { Play } from 'lucide-react';
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router';
 
 const MoviePage = () => {
@@ -8,11 +8,23 @@ const MoviePage = () => {
     const [recommendations, setRecommendations] = useState([]);
     const [trailerKey, setTrailerKey] = useState(null);
 
+    const [token, setToken] = useState("");
+
+    useEffect(() => {
+      // First, get token from backend
+      const fetchToken = async () => {
+        const res = await fetch("http://localhost:5000/api/token");
+        const data = await res.json();
+        setToken(data.token);
+      };
+      fetchToken();
+    }, []);
+
     const options = {
       method: "GET",
       headers: {
         accept: "application/json",
-        Authorization: `Bearer ${import.meta.env.VITE_TMDB_TOKEN}`,
+        Authorization: `Bearer ${token}`,
       },
     };
 
