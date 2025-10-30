@@ -26,3 +26,9 @@ It provides a modern and interactive UI where users can browse movies, search fo
 * Tailwind CSS – Styling and responsiveness
 
 * TMDB API – Fetching movie data
+
+## 🌐 Live Demo
+
+(https://flex-abritech.netlify.app/))
+
+---
